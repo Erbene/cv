@@ -453,7 +453,7 @@
 
     <section>
       <h2>Summary</h2>
-      <p class="summary">Senior Software Engineer, Senior Member of Technical Staff (SMTS) at Salesforce. 12+ years as a generalist—product, platform, data, and delivery—usually the person who picks up whatever the system needs next. Strongest in C#, with working proficiency in Python and JavaScript/TypeScript. Has been technical lead on a product, a contractor inside large platforms, and an engineer who takes a piece of work from design through production when that is the job. Recently completed Carnegie Mellon’s Agentic AI certificate (Sep 2026).</p>
+      <p class="summary">Senior Software Engineer, Senior Member of Technical Staff (SMTS) at Salesforce. 12+ years as a generalist—product, platform, data, and delivery—usually the person who picks up whatever the system needs next. Strongest in C#, with substantial Python and JavaScript/TypeScript (Node.js services, React/Next.js, and CLI work on existing JS CI tooling). Has been technical lead on a product, a contractor inside large platforms, and an engineer who takes a piece of work from design through production when that is the job. Recently completed Carnegie Mellon’s Agentic AI certificate (Sep 2026).</p>
     </section>
 
     <hr class="rule">
@@ -473,7 +473,7 @@
             <summary><span class="label-closed">Show more</span><span class="label-open">Show less</span></summary>
             <div class="more-body">
               <ul>
-                <li>Built in Elixir/OTP and served thousands of active users during my tenure. Speakers holding the floor were also excluded from private calls.</li>
+                <li>Stack: Node.js REST API, Android/Java clients, and an Elixir/OTP rewrite of a prior C++ media server. Served thousands of active users during my tenure; the platform now serves 100,000+. Speakers holding the floor were also excluded from private calls.</li>
                 <li>Horizontal partitioning of channel state was designed, locally tested, and ready ahead of production need.</li>
                 <li>Planned computer-based systems including mobile applications; trained the development team; documented requirements, architecture, and performance models; onsite incident response.</li>
               </ul>
@@ -487,15 +487,17 @@
             <span>Salesforce · 2023–Present</span>
           </div>
           <h3>Correctness, isolation, and trustworthy feedback loops</h3>
-          <p>Diagnosed and fixed a production ABA/check-then-act race on recycled hostnames by designing stack- and stage-scoped serialization, validation, diagnostics, and safe concurrent multi-stack execution. Spent eight months building the Jenkins pipelines that performed a ~<strong>10,000-host</strong> RHEL7-to-RHEL9 migration. Built the C# / Dapper inventory CLI those pipelines depend on—provisioning, config generation, activate/deactivate, Ansible inventory, and bulk operations.</p>
-          <p>Built a containerized Kafka integration-test harness that cut setup from hours to minutes and became a reference CI pattern. Built and operated components used by deployment pipelines, including a Python watcher that monitors commit status on core repositories, confirms the artifact is in Artifactory, checks that required change paperwork is filed in the work-tracking system, and only then starts the automated monolith deploy; a Splunk-to-Slack failure-triage service with tests and non-blocking failure behavior; and soak-time policy-as-code. Decided what to improve next by looking at how long builds took, how long jobs sat in queue, which tests were flaky, and whether teams actually used tools such as auto-backport.</p>
+          <p>Diagnosed and fixed a production ABA/check-then-act race on recycled hostnames by designing stack- and stage-scoped serialization, validation, diagnostics, and safe concurrent multi-stack execution. Spent about eight months building the Jenkins automation for a ~<strong>10,000-host</strong> RHEL7-to-RHEL9 migration, compressing a projected two-year effort into roughly six months. Built the C# / Dapper inventory CLI those pipelines depend on—provisioning, config generation, activate/deactivate, Ansible inventory, and bulk operations.</p>
+          <p>Built a containerized Kafka integration-test harness that cut setup from hours to minutes and became a reference CI pattern. Extended an existing JavaScript paperwork-validation service used as GitHub required checks before commits to main: added features and ported its modules into a CLI so CI can run the same logic as the web app. Built and operated a separate Python watcher, as a containerized Spinnaker stage, that starts the automated monolith deploy only after commit status, Artifactory, and required change paperwork all pass; a Splunk-to-Slack failure-triage service with tests and non-blocking failure behavior; and soak-time policy-as-code. Decided what to improve next by looking at how long builds took, how long jobs sat in queue, which tests were flaky, and whether teams actually used tools such as auto-backport.</p>
           <details class="more">
             <summary><span class="label-closed">Show more</span><span class="label-open">Show less</span></summary>
             <div class="more-body">
               <ul>
                 <li>The ABA race fired in production: commissioning saw config that should already have been deleted, skipped its update, then a still-running decommissioning pipeline deleted it—partial/mixed host config, each occurrence a PagerDuty. Serialized non-overlapping decommission/commission stages with a per-stack, per-stage lock on recycled hostnames.</li>
+                <li>Measured through Jul 24, 2026: 10,156 RHEL7 decommissioned, 7,333 RHEL9 added (17,489 lifecycle operations). Peak week 2,760 operations. Zero automation-attributable production incidents.</li>
                 <li>C# / Dapper inventory CLI: TLS, pool-capacity and hotspare validation, bulk-insert path for large operations, Docker Compose tests against disposable databases. Kafka harness auto-provisions topics, Zookeeper, and clients on dynamic Jenkins agents.</li>
-                <li>Deployment watcher: GitHub for commit status, Artifactory for artifact readiness, work-tracking APIs for required change paperwork—deploy does not start until all three pass.</li>
+                <li>JS CI paperwork service: existing web app; I added features and extracted a CLI so GitHub required checks execute the same modules. Separate from the Python Spinnaker deploy watcher.</li>
+                <li>Python deploy watcher: GitHub for commit status, Artifactory for artifact readiness, work-tracking APIs for required change paperwork—deploy does not start until all three pass.</li>
                 <li>Failure-triage service: Splunk errors keyed by deployment ID, Slack lookup with graceful fallback, feature-flagged, first-party-only; Splunk/Slack failures never block a deploy.</li>
               </ul>
             </div>
@@ -540,7 +542,7 @@
         </div>
         <div class="skill">
           <dt>Backend</dt>
-          <dd>C# / .NET (proficient); Python and JavaScript/TypeScript (working proficiency; more Python than JS); Java; REST APIs; Groovy; SQL; MongoDB; Docker; Kubernetes; Helm; AWS</dd>
+          <dd>C# / .NET (proficient); Python; JavaScript/TypeScript (Node.js, React/Next.js); Java; REST APIs; Groovy; SQL; MongoDB; Docker; Kubernetes; Helm; AWS</dd>
         </div>
         <div class="skill">
           <dt>AI evaluation &amp; tooling</dt>
@@ -553,11 +555,11 @@
           <dl class="skills">
             <div class="skill">
               <dt>Languages &amp; data</dt>
-              <dd>C# / ASP.NET Core / Dapper (proficient); Python (working proficiency); JavaScript/TypeScript (working proficiency); Java; Groovy; Elixir/OTP (prior); Node.js; PHP (prior); REST; PostgreSQL; SQL Server/T-SQL; MongoDB; Mnesia; Apache Kafka (topics, Zookeeper, containerized local/Helm)</dd>
+              <dd>C# / ASP.NET Core / Dapper (proficient); Python; JavaScript/TypeScript (Node.js, React/Next.js); Java; Groovy; Elixir/OTP (prior); PHP (prior); REST; PostgreSQL; SQL Server/T-SQL; MongoDB; Mnesia; Apache Kafka (topics, Zookeeper, containerized local/Helm)</dd>
             </div>
             <div class="skill">
               <dt>Cloud, AI stack, and front-end</dt>
-              <dd>AWS (EC2, ECS, ECR, S3, Lambda); Azure (AKS, Functions, Storage); Flyte ML pipelines; LangChain; LangSmith; Chroma; Ollama; MCP; Pydantic; React/Redux (prior); HTML/CSS</dd>
+              <dd>AWS (EC2, ECS, ECR, S3, Lambda); Azure (AKS, Functions, Storage); Flyte ML pipelines (research); LangChain; LangSmith; Chroma; Ollama; MCP; Pydantic; React/Next.js; React/Redux (prior); HTML/CSS</dd>
             </div>
           </dl>
         </div>
@@ -578,7 +580,8 @@
         <ul>
           <li>Build and operate deployment pipelines from design through production: code, tests, deploy, and on-call. Lead daily code and design reviews (at least six PR reviews per week) and helped transition three former CD engineers into CI work after the teams merged.</li>
           <li>Built a C# / Dapper inventory CLI that became the foundation for RHEL9 lifecycle pipelines: stack/pool provisioning, config generation, activate/deactivate, Ansible inventory, and bulk operations, with TLS, capacity and hotspare validation, and Docker Compose tests against disposable databases.</li>
-          <li>Built and operated components used by deployment pipelines: a Python watcher that monitors commit status on core repositories, confirms the artifact is in Artifactory, checks that required change paperwork is filed, and only then triggers the automated monolith deploy; a feature-flagged Splunk-to-Slack failure-triage component (tests, secrets, non-blocking failure); soak-time QA-canary policy as code.</li>
+          <li>Maintain production Node.js services and a React/Next.js dashboard. Extended an existing JavaScript paperwork-validation service (GitHub required checks before main): added features and ported its modules into a CLI.</li>
+          <li>Built and operated a separate Python watcher as a containerized Spinnaker stage: monitors commit status, confirms the artifact is in Artifactory, checks that required change paperwork is filed, and only then triggers the automated monolith deploy; a feature-flagged Splunk-to-Slack failure-triage component (tests, secrets, non-blocking failure); soak-time QA-canary policy as code.</li>
           <li>Recreated the marketing-product DKIM (email-signing) updater for RHEL9 because the RHEL7 automation could not be migrated directly, then scheduled it twice daily across MTA pools. Replaced a manual Artifactory TLS certificate deploy with a governed Jenkins path: validation, secret masking, and change compliance ahead of expiry.</li>
           <li>Developed and operated developer-productivity tooling across Jenkins and Spinnaker: Dockerized stages, Jenkins DSL/job definitions, and two Artifactory plugins. Instrumented adoption of an auto-backport tool used by at least 10 teams. The isolated Kafka test harness cut setup from hours to minutes and became a reference CI pattern.</li>
         </ul>
@@ -620,7 +623,7 @@
           <summary><span class="label-closed">Show more</span><span class="label-open">Show less</span></summary>
           <div class="more-body">
             <ul>
-              <li>Research domain: seismic-event discrimination. Pipelines were modular, reusable, and auditable.</li>
+              <li>Research domain: seismic-event discrimination. Pipelines were modular, reusable, and auditable — research workloads, not a production ML platform.</li>
               <li>Created Kubernetes deployments for data-processing workloads and deployed a Kubernetes cluster for the research pipeline.</li>
             </ul>
           </div>
@@ -672,7 +675,7 @@
           <summary><span class="label-closed">Show more</span><span class="label-open">Show less</span></summary>
           <div class="more-body">
             <ul>
-              <li>Led, coordinated, and trained the software team (one junior engineer and two interns). Planned computer-based systems including mobile applications; documented requirements, architecture, and performance models.</li>
+              <li>Led, coordinated, and trained the software team (one junior engineer and two interns). Stack: Node.js REST API, Android/Java clients, Elixir/OTP rewrite of a C++ media server. Planned computer-based systems including mobile applications; documented requirements, architecture, and performance models.</li>
             </ul>
           </div>
         </details>
